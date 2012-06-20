@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post example</title>
+</head>
+<body>
+	
+	<div>
+		Hello, {{ . }}
+	</div>
+	<div>
+		<form action="/home/index" method="post">
+			<input type='text' id="Name" name="Name" />
+			<input type='submit' value='Say hello' />
+		</form>
+	</div>
+</body>
+</html>

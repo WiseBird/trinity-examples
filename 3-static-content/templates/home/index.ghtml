@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Static content example</title>
+</head>
+<body>
+	Static content: <img src="/static/doc.png"></img>
+</body>
+</html>

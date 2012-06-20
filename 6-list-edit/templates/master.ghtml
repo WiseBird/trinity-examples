@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Master page example</title>
+</head>
+<body>
+	<div>
+		<a href="/home/create">New product</a>
+		<a href="/home/list">Product list</a>
+	</div>
+	<div style='margin:15px;'>
+		{{template "Middle" .}}
+	</div>
+</body>
+</html>

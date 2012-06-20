@@ -1,0 +1,7 @@
+{{define "ViewOptions_home_index"}}
+	MasterPage=master.ghtml
+{{end}}
+
+{{define "Middle"}}
+	<h2>Content from inner page</h2>
+{{end}}

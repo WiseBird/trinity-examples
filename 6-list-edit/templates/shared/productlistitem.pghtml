@@ -1,0 +1,6 @@
+{{ define "ProductListItem" }}
+	<div>
+		<h3>{{ .Name }} [<a href="/home/edit?ProductId={{ .ProductId }}">Edit</a>]</h3>
+		<div>{{ .Description }}</div>
+	</div>
+{{ end }}

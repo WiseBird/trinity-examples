@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Master page example</title>
+</head>
+<body>
+	<h1>Content from master page</h1>
+
+	{{template "Middle" .}}
+</body>
+</html>

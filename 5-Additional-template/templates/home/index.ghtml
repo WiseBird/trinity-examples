@@ -1,0 +1,17 @@
+{{define "ViewOptions_home_index"}}
+	AdditionalTemplate=shared/address.pghtml
+{{end}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Additional template example</title>
+</head>
+<body>
+	<h1>{{ .Name }}</h1>
+	<fieldset>
+	<legend>Address</legend>
+		{{template "Address" .Address }}
+	</fieldset>
+</body>
+</html>
