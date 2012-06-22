@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List edit ajax example</title>
+	
+	<script src="/static/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script src="/static/utilities.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="divError" style="color:Red;">
+	</div>
+
+	<div>
+		<fieldset>
+		<legend id="EditProductLegend"></legend>
+			<input type="hidden" id="ProductId" />
+		
+			<div>
+				Name
+			</div>
+			<div>
+				<input type="text" id="Name" />
+			</div>
+			<div>
+				Description
+			</div>
+			<div>
+				<textarea style="width:300px;" id="Description"></textarea>
+			</div>
+			
+			<input type='button' id='SaveProduct' />
+		</fieldset>
+	</div>
+	<div>
+		<fieldset>
+		<legend>Products</legend>
+			<input type='button' id='NewProduct' value='New product' />
+			
+			<div id='ProductsList'>
+			</div>
+		</fieldset>
+	</div>
+	
+	<script type="text/javascript">
+		$(function() {
+			$(".EditProduct").live("click", function(){
+				editProduct($(this).attr("productId"))
+			});    
+			
+			$('#NewProduct').click(newProduct)
+			$('#SaveProduct').click(function() {
+				var id = $('#ProductId').val()
+
+				$.post("/{{ .C.Home }}/{{ .A.Home.Edit }}", 
+					{ 
+						ProductId: id,
+						Name: $('#Name').val(),
+						Description: $('#Description').val()
+					},
+					function(productVM) {
+						if(productVM.Error != "") {
+							$('#divError').text(productVM.Error);
+						} else {
+							if(id == "0") {
+								newProduct();
+							}
+							
+							loadList();
+						}
+					});
+			});
+			
+			loadList();
+			$('#NewProduct').click();
+		})
+
+		function newProduct() {
+			$('#divError').text("");
+			
+			$('#EditProductLegend').text("Add product")
+			$('#ProductId').val("0")
+			$('#Name').val("")
+			$('#Description').val("")
+			$('#SaveProduct').val("Add")
+		}
+		
+		function editProduct(id) {
+			$('#divError').text("");
+			
+			$('#EditProductLegend').text("Edit product")
+			$('#ProductId').val(id)
+			$('#SaveProduct').val("Save")
+			
+			$.get("/{{ .C.Home }}/{{ .A.Home.Edit }}", 
+				{ 
+					ProductId: id
+				},
+				function(product) {
+					$('#Name').val(product.Name)
+					$('#Description').val(product.Description)
+				});
+		}
+		
+		function loadList() {
+			$('#ProductsList').empty();
+			
+			$.get("/{{ .C.Home }}/{{ .A.Home.List }}", 
+				{ },
+				function(products) {
+					console.dir(products)
+					
+					var ol = $("<ol></ol>")
+					for(var i = 0; i < products.length; i++) {
+						product = products[i]
+						var il = $("<li><div><h3>" + product.Name + "<input type='button' value='Edit' class='EditProduct' productId='" + product.ProductId + "' /></h3><div>" + product.Description + "</div></div></li>")
+						
+						ol.append(il)
+					}
+					
+					$('#ProductsList').append(ol);
+				});
+		}
+		
+	</script>
+</body>
+</html>

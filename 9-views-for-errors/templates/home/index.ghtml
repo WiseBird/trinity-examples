@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Views for errors example</title>
+</head>
+<body>
+	<div>
+		<a href="/{{ .C.Home }}/{{ .A.Home.Error }}">Error</a>
+	</div>
+	<div>
+		<a href="/123">NotFound</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{{define "ViewOptions_home_list"}}
+	MasterPage=master.ghtml
+	AdditionalTemplate=shared/productlistitem.pghtml
+{{end}}
+
+{{ define "Middle" }}
+	{{ $productsLen := len . }}
+	{{ if equals $productsLen 0 }}
+		<h3>No rpoducts</h3>
+	{{ end }}
+	<ol>
+		{{range $el := . }}
+		<li>
+			{{ template "ProductListItem" . }}
+		</li>
+		{{ end }}
+	</ol>
+{{ end }}

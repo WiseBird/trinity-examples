@@ -1,0 +1,26 @@
+{{define "ViewOptions_home_edit"}}
+	MasterPage=master.ghtml
+{{end}}
+
+{{ define "Middle" }}
+	<span style='color:Red;'>{{ .Error }}</span>
+
+	<form action="/home/edit" method="post">
+		<input type="hidden" name="ProductId" id="ProductId" value="{{ .ProductId }}" />
+		
+		<div>
+			Name
+		</div>
+		<div>
+			<input type="text" id="Name" name="Name" value="{{ .Name }}" />
+		</div>
+		<div>
+			Description
+		</div>
+		<div>
+			<textarea style="width:300px;" id="Description" name="Description" >{{ .Description }}</textarea>
+		</div>
+		
+		<input type='submit' value='Save' />
+	</form>
+{{ end }}

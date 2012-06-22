@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication authorization example</title>
+</head>
+<body>
+	<h1>Hello, on private page!</h1>
+	
+	<a href="/{{ .C.Home }}/{{ .A.Home.Index }}">Index</a>
+</body>
+</html>

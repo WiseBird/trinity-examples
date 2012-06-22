@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentication authorization example</title>
+</head>
+<body>
+	{{ if .Restricted }}
+	<div style='color:Red;'>First login</div>
+	{{ end }}
+	
+	<h1>Hello, 
+	{{ if .Authenticated }}
+		Authenticated user
+	{{ else }}
+		Anonymous user
+	{{ end }}
+	</h1>
+
+	<div>
+	{{ if .Authenticated }}
+		<a href="/{{ .C.Account }}/{{ .A.Account.Logout }}">LogOut</a>
+	{{ else }}
+		<a href="/{{ .C.Account }}/{{ .A.Account.Login }}">Login</a>
+	{{ end }}
+	</div>
+	
+	<div>
+		<a href="/{{ .C.Home }}/{{ .A.Home.Private }}">Private page</a>
+	</div>
+	
+</body>
+</html>
